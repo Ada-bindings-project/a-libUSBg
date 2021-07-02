@@ -1,0 +1,26 @@
+with "../libusbg.gpr";
+
+project LibUSBg.Examples is
+   for Create_Missing_Dirs use "True";
+   for Source_Dirs use ("src/**");
+   for Object_Dir use ".obj";
+   for Exec_Dir use "bin";
+
+   for Main use project'Main & ("libusbg-examples-gadget_acm_ecm.adb");
+   for Main use project'Main & ("libusbg-examples-gadget_export.adb");
+   for Main use project'Main & ("libusbg-examples-gadget_ffs.adb");
+   for Main use project'Main & ("libusbg-examples-gadget_import.adb");
+   for Main use project'Main & ("libusbg-examples-gadget_vid_pid_remove.adb");
+   for Main use project'Main & ("libusbg-examples-show_gadgets.adb");
+
+   package Builder is
+      for Executable ("libusbg-examples-gadget_acm_ecm.adb") use "gadget-acm-ecm";
+      for Executable ("libusbg-examples-gadget_export.adb")use "gadget-export";
+      for Executable ("libusbg-examples-gadget_ffs.adb")use "gadget.ffs";
+      for Executable ("libusbg-examples-gadget_import.adb")use "gadget-import";
+      for Executable ("libusbg-examples-gadget_vid_pid_remove.adb")use "gadget-vid-pid-remove";
+      for Executable ("libusbg-examples-show_gadgets.adb")use "show-gadgets";
+
+   end  Builder;
+end LibUSBg.Examples;
+

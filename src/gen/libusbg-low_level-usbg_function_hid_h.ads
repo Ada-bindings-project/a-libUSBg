@@ -4,11 +4,11 @@ pragma Warnings ("U");
 
 with Interfaces.C; use Interfaces.C;
 with Interfaces.C.Strings;
---  with Libusg.Low_Level.sys_types_h;
-limited with Libusg.Low_Level.usbg_usbg_h;
+--  with libUSBg.Low_Level.sys_types_h;
+limited with libUSBg.Low_Level.usbg_usbg_h;
 with System;
 
-package Libusg.Low_Level.usbg_function_hid_h is
+package libUSBg.Low_Level.usbg_function_hid_h is
 
    --  arg-macro: procedure USBG_F_HID_UINT_TO_ATTR_VAL (WHAT)
    --    USBG_TO_UNION(usbg_f_hid_attr_val, protocol, WHAT)
@@ -34,7 +34,7 @@ package Libusg.Low_Level.usbg_function_hid_h is
    with Convention => C_Pass_By_Copy;  -- usbg/function/hid.h:29
 
    type usbg_f_hid_attrs is record
-      dev           : aliased Libusg.Low_Level.Sys_Types_H.Dev_T;  -- usbg/function/hid.h:35
+      dev           : aliased libUSBg.Low_Level.Sys_Types_H.Dev_T;  -- usbg/function/hid.h:35
       protocol      : aliased unsigned;  -- usbg/function/hid.h:36
       report_desc   : aliased usbg_f_hid_report_desc;  -- usbg/function/hid.h:37
       report_length : aliased unsigned;  -- usbg/function/hid.h:38
@@ -54,7 +54,7 @@ package Libusg.Low_Level.usbg_function_hid_h is
    type usbg_f_hid_attr_val (discr : unsigned := 0) is record
       case discr is
          when 0 =>
-            dev : aliased Libusg.Low_Level.Sys_Types_H.Dev_T;  -- usbg/function/hid.h:53
+            dev : aliased libUSBg.Low_Level.Sys_Types_H.Dev_T;  -- usbg/function/hid.h:53
          when 1 =>
             protocol : aliased unsigned;  -- usbg/function/hid.h:54
          when 2 =>
@@ -75,7 +75,7 @@ package Libusg.Low_Level.usbg_function_hid_h is
   --  * @return Converted hid function or NULL if function hasn't suitable type
   --
 
-   function usbg_to_hid_function (f : access Libusg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_hid  -- usbg/function/hid.h:71
+   function usbg_to_hid_function (f : access libUSBg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_hid  -- usbg/function/hid.h:71
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_to_hid_function";
@@ -86,7 +86,7 @@ package Libusg.Low_Level.usbg_function_hid_h is
   --  * @return Generic usbg function
   --
 
-   function usbg_from_hid_function (hf : access usbg_f_hid) return access Libusg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/hid.h:78
+   function usbg_from_hid_function (hf : access usbg_f_hid) return access libUSBg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/hid.h:78
      with Import    => True,
       Convention    => C,
       External_Name => "usbg_from_hid_function";
@@ -175,7 +175,7 @@ package Libusg.Low_Level.usbg_function_hid_h is
   --  * @return 0 on success usbg_error if error occurred.
   --
 
-   function usbg_f_hid_get_dev (hf : access usbg_f_hid; dev : access Libusg.Low_Level.Sys_Types_H.Dev_T) return int  -- usbg/function/hid.h:149
+   function usbg_f_hid_get_dev (hf : access usbg_f_hid; dev : access libUSBg.Low_Level.Sys_Types_H.Dev_T) return int  -- usbg/function/hid.h:149
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_f_hid_get_dev";
@@ -237,7 +237,7 @@ package Libusg.Low_Level.usbg_function_hid_h is
 
    function usbg_f_hid_get_report_desc_raw
      (hf   : access usbg_f_hid;
-      desc : System.Address;
+      desc : not null access usbg_usbg_h.usbg_config_access;
       len  : access unsigned) return int  -- usbg/function/hid.h:213
       with Import   => True,
       Convention    => C,
@@ -306,4 +306,4 @@ package Libusg.Low_Level.usbg_function_hid_h is
       Convention    => C,
       External_Name => "usbg_f_hid_set_subclass";
 
-end Libusg.Low_Level.usbg_function_hid_h;
+end libUSBg.Low_Level.usbg_function_hid_h;

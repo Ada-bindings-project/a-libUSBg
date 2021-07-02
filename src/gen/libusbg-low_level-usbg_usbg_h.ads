@@ -9,7 +9,7 @@ with Interfaces.C.Extensions;
 with System;
 with Interfaces.C_Streams;
 
-package Libusg.Low_Level.usbg_usbg_h is
+package libUSBg.Low_Level.usbg_usbg_h is
 
    --  unsupported macro: DEFAULT_UDC NULL
    LANG_US_ENG          : constant                := 16#0409#;  --  usbg/usbg.h:51
@@ -79,14 +79,19 @@ package Libusg.Low_Level.usbg_usbg_h is
    type usbg_state_access is access all usbg_state with Storage_Size => 0;
 
    type usbg_gadget is null record;   -- incomplete struct
+   type usbg_gadget_access is access all usbg_gadget with Storage_Size => 0;
 
    type usbg_config is null record;   -- incomplete struct
+   type usbg_config_access is access all usbg_config with Storage_Size => 0;
 
    type usbg_function is null record;   -- incomplete struct
+   type usbg_function_access is access all usbg_function with Storage_Size => 0;
 
    type usbg_binding is null record;   -- incomplete struct
+   type usbg_binding_access is access all usbg_binding with Storage_Size => 0;
 
    type usbg_udc is null record;   -- incomplete struct
+   type usbg_udc_access is access all usbg_udc with Storage_Size => 0;
 
   --*
   --  * @brief State of the gadget devices in the system
@@ -134,6 +139,8 @@ package Libusg.Low_Level.usbg_usbg_h is
   --  * @brief USB gadget device attributes
   --
 
+   type usbg_gadget_attrs;
+   type usbg_gadget_attrs_access is access all usbg_gadget_attrs with Storage_Size => 0;
    type usbg_gadget_attrs is record
       bcdUSB          : aliased Interfaces.Unsigned_16;  -- usbg/usbg.h:133
       bDeviceClass    : aliased Interfaces.Unsigned_8;  -- usbg/usbg.h:134
@@ -494,7 +501,7 @@ package Libusg.Low_Level.usbg_usbg_h is
       name      : Interfaces.C.Strings.chars_ptr;
       idVendor  : Interfaces.Unsigned_16;
       idProduct : Interfaces.Unsigned_16;
-      g         : System.Address) return int  -- usbg/usbg.h:415
+      g         : not null access usbg_gadget_access) return int  -- usbg/usbg.h:415
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_create_gadget_vid_pid";
@@ -516,7 +523,7 @@ package Libusg.Low_Level.usbg_usbg_h is
       name    : Interfaces.C.Strings.chars_ptr;
       g_attrs : access constant usbg_gadget_attrs;
       g_strs  : access constant usbg_gadget_strs;
-      g       : System.Address) return int  -- usbg/usbg.h:429
+      g       : not null access usbg_gadget_access) return int  -- usbg/usbg.h:429
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_create_gadget";
@@ -936,8 +943,8 @@ package Libusg.Low_Level.usbg_usbg_h is
      (g        : access usbg_gadget;
       c_type   : usbg_function_type;
       instance : Interfaces.C.Strings.chars_ptr;
-      f_attrs  : System.Address;
-      f        : System.Address) return int  -- usbg/usbg.h:732
+      f_attrs  : not null access usbg_gadget_attrs_access;
+      f        : not null access usbg_function_access) return int  -- usbg/usbg.h:732
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_create_function";
@@ -1005,8 +1012,8 @@ package Libusg.Low_Level.usbg_usbg_h is
   --  * accessed after returning from this function.
   --
 
-   procedure usbg_cleanup_function_attrs (f : access usbg_function; f_attrs : System.Address)  -- usbg/usbg.h:778
-        with Import => True,
+   procedure usbg_cleanup_function_attrs (f : access usbg_function; f_attrs : not null access usbg_gadget_attrs_access)  -- usbg/usbg.h:778
+      with Import   => True,
       Convention    => C,
       External_Name => "usbg_cleanup_function_attrs";
 
@@ -1033,7 +1040,7 @@ package Libusg.Low_Level.usbg_usbg_h is
   --  *         by each function type.
   --
 
-   function usbg_get_function_attrs (f : access usbg_function; f_attrs : System.Address) return int  -- usbg/usbg.h:798
+   function usbg_get_function_attrs (f : access usbg_function; f_attrs : not null access usbg_gadget_attrs_access) return int  -- usbg/usbg.h:798
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_get_function_attrs";
@@ -1045,7 +1052,7 @@ package Libusg.Low_Level.usbg_usbg_h is
   --  * @return 0 on success, usbg_error if error occurred
   --
 
-   function usbg_set_function_attrs (f : access usbg_function; f_attrs : System.Address) return int  -- usbg/usbg.h:806
+   function usbg_set_function_attrs (f : access usbg_function; f_attrs : not null access usbg_gadget_attrs_access) return int  -- usbg/usbg.h:806
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_set_function_attrs";
@@ -1113,7 +1120,7 @@ package Libusg.Low_Level.usbg_usbg_h is
       label   : Interfaces.C.Strings.chars_ptr;
       c_attrs : access constant usbg_config_attrs;
       c_strs  : access constant usbg_config_strs;
-      c       : System.Address) return int  -- usbg/usbg.h:857
+      c       : not null access usbg_usbg_h.usbg_config_access) return int  -- usbg/usbg.h:857
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_create_config";
@@ -1633,7 +1640,7 @@ package Libusg.Low_Level.usbg_usbg_h is
      (g        : access usbg_gadget;
       stream   : Interfaces.C_Streams.FILEs;
       instance : Interfaces.C.Strings.chars_ptr;
-      f        : System.Address) return int  -- usbg/usbg.h:1236
+      f        : not null access usbg_function_access) return int  -- usbg/usbg.h:1236
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_import_function";
@@ -1652,7 +1659,7 @@ package Libusg.Low_Level.usbg_usbg_h is
      (g      : access usbg_gadget;
       stream : Interfaces.C_Streams.FILEs;
       id     : int;
-      c      : System.Address) return int  -- usbg/usbg.h:1248
+      c      : not null access usbg_usbg_h.usbg_config_access) return int  -- usbg/usbg.h:1248
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_import_config";
@@ -1671,7 +1678,7 @@ package Libusg.Low_Level.usbg_usbg_h is
      (s      : access usbg_state;
       stream : Interfaces.C_Streams.FILEs;
       name   : Interfaces.C.Strings.chars_ptr;
-      g      : System.Address) return int  -- usbg/usbg.h:1260
+      g      : not null access usbg_gadget_access) return int  -- usbg/usbg.h:1260
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_import_gadget";
@@ -1746,4 +1753,4 @@ package Libusg.Low_Level.usbg_usbg_h is
   -- * @}
   --
 
-end Libusg.Low_Level.usbg_usbg_h;
+end libUSBg.Low_Level.usbg_usbg_h;

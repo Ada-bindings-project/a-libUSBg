@@ -6,9 +6,9 @@ with Interfaces.C; use Interfaces.C;
 with Interfaces.C.Extensions;
 with Interfaces.C.Strings;
 with System;
-limited with Libusg.Low_Level.usbg_usbg_h;
+limited with libUSBg.Low_Level.usbg_usbg_h;
 
-package Libusg.Low_Level.usbg_function_ms_h is
+package libUSBg.Low_Level.usbg_function_ms_h is
 
    --  arg-macro: procedure USBG_F_MS_LUN_BOOL_TO_ATTR_VAL (WHAT)
    --    USBG_TO_UNION(usbg_f_ms_lun_attr_val, cdrom, WHAT)
@@ -78,7 +78,7 @@ package Libusg.Low_Level.usbg_function_ms_h is
   --  * @return Converted ms function or NULL if function hasn't suitable type
   --
 
-   function usbg_to_ms_function (f : access Libusg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_ms  -- usbg/function/ms.h:74
+   function usbg_to_ms_function (f : access libUSBg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_ms  -- usbg/function/ms.h:74
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_to_ms_function";
@@ -89,7 +89,7 @@ package Libusg.Low_Level.usbg_function_ms_h is
   --  * @return Generic usbg function
   --
 
-   function usbg_from_ms_function (mf : access usbg_f_ms) return access Libusg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/ms.h:81
+   function usbg_from_ms_function (mf : access usbg_f_ms) return access libUSBg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/ms.h:81
      with Import    => True,
       Convention    => C,
       External_Name => "usbg_from_ms_function";
@@ -462,4 +462,4 @@ package Libusg.Low_Level.usbg_function_ms_h is
       Convention    => C,
       External_Name => "usbg_f_ms_get_nluns";
 
-end Libusg.Low_Level.usbg_function_ms_h;
+end libUSBg.Low_Level.usbg_function_ms_h;

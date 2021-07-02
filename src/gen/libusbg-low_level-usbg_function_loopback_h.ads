@@ -3,9 +3,9 @@ pragma Style_Checks (Off);
 pragma Warnings ("U");
 
 with Interfaces.C; use Interfaces.C;
-limited with Libusg.Low_Level.usbg_usbg_h;
+limited with libUSBg.Low_Level.usbg_usbg_h;
 
-package Libusg.Low_Level.usbg_function_loopback_h is
+package libUSBg.Low_Level.usbg_function_loopback_h is
 
   --  * This library is free software; you can redistribute it and/or
   --  * modify it under the terms of the GNU Lesser General Public
@@ -39,7 +39,7 @@ package Libusg.Low_Level.usbg_function_loopback_h is
   --  * @return Converted loopback function or NULL if function hasn't suitable type
   --
 
-   function usbg_to_loopback_function (f : access Libusg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_loopback  -- usbg/function/loopback.h:43
+   function usbg_to_loopback_function (f : access libUSBg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_loopback  -- usbg/function/loopback.h:43
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_to_loopback_function";
@@ -50,7 +50,7 @@ package Libusg.Low_Level.usbg_function_loopback_h is
   --  * @return Generic usbg function
   --
 
-   function usbg_from_loopback_function (lf : access usbg_f_loopback) return access Libusg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/loopback.h:50
+   function usbg_from_loopback_function (lf : access usbg_f_loopback) return access libUSBg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/loopback.h:50
      with Import    => True,
       Convention    => C,
       External_Name => "usbg_from_loopback_function";
@@ -167,4 +167,4 @@ package Libusg.Low_Level.usbg_function_loopback_h is
       Convention    => C,
       External_Name => "usbg_f_loopback_set_qlen";
 
-end Libusg.Low_Level.usbg_function_loopback_h;
+end libUSBg.Low_Level.usbg_function_loopback_h;

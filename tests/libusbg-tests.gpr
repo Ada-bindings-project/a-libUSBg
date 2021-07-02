@@ -1,11 +1,11 @@
-with "../libusg.gpr";
+with "../libusbg.gpr";
 
-project Libusg.Examples is
+project LibUSBg.Tests is
    for Create_Missing_Dirs use "True";
    for Source_Dirs use ("src/**");
    for Object_Dir use ".obj";
    for Exec_Dir use "bin";
-   for Main use ("main.adb");
+   for Main use ("libusbg-tests-main.adb");
 
-end Libusg.Examples;
+end LibUSBg.Tests;
 

@@ -3,11 +3,11 @@ pragma Style_Checks (Off);
 pragma Warnings ("U");
 
 with Interfaces.C; use Interfaces.C;
-limited with Libusg.Low_Level.usbg_usbg_h;
+limited with libUSBg.Low_Level.usbg_usbg_h;
 with System;
 with Interfaces.C.Strings;
 
-package Libusg.Low_Level.usbg_function_phonet_h is
+package libUSBg.Low_Level.usbg_function_phonet_h is
 
   --  * This library is free software; you can redistribute it and/or
   --  * modify it under the terms of the GNU Lesser General Public
@@ -29,7 +29,7 @@ package Libusg.Low_Level.usbg_function_phonet_h is
   --  * @return Converted phonet function or NULL if function hasn't suitable type
   --
 
-   function usbg_to_phonet_function (f : access Libusg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_phonet  -- usbg/function/phonet.h:31
+   function usbg_to_phonet_function (f : access libUSBg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_phonet  -- usbg/function/phonet.h:31
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_to_phonet_function";
@@ -40,7 +40,7 @@ package Libusg.Low_Level.usbg_function_phonet_h is
   --  * @return Generic usbg function
   --
 
-   function usbg_from_phonet_function (pf : access usbg_f_phonet) return access Libusg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/phonet.h:38
+   function usbg_from_phonet_function (pf : access usbg_f_phonet) return access libUSBg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/phonet.h:38
      with Import    => True,
       Convention    => C,
       External_Name => "usbg_from_phonet_function";
@@ -79,4 +79,4 @@ package Libusg.Low_Level.usbg_function_phonet_h is
       Convention    => C,
       External_Name => "usbg_f_phonet_get_ifname_s";
 
-end Libusg.Low_Level.usbg_function_phonet_h;
+end libUSBg.Low_Level.usbg_function_phonet_h;

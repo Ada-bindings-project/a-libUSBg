@@ -3,12 +3,12 @@ pragma Style_Checks (Off);
 pragma Warnings ("U");
 
 with Interfaces.C; use Interfaces.C;
---  with Libusg.Low_Level.net_ethernet_h;
+--  with libUSBg.Low_Level.net_ethernet_h;
 with Interfaces.C.Strings;
-limited with Libusg.Low_Level.usbg_usbg_h;
+limited with libUSBg.Low_Level.usbg_usbg_h;
 with System;
 
-package Libusg.Low_Level.usbg_function_net_h is
+package libUSBg.Low_Level.usbg_function_net_h is
 
    --  arg-macro: procedure USBG_F_NET_ETHER_ADDR_TO_ATTR_VAL (WHAT)
    --    USBG_TO_UNION(usbg_f_net_attr_val, dev_addr, WHAT)
@@ -28,8 +28,8 @@ package Libusg.Low_Level.usbg_function_net_h is
    type usbg_f_net is null record;   -- incomplete struct
 
    type usbg_f_net_attrs is record
-      dev_addr  : aliased Libusg.Low_Level.Net_Ethernet_H.Ether_Addr;  -- usbg/function/net.h:28
-      host_addr : aliased Libusg.Low_Level.Net_Ethernet_H.Ether_Addr;  -- usbg/function/net.h:29
+      dev_addr  : aliased libUSBg.Low_Level.Net_EtHernet_H.Ether_Addr;  -- usbg/function/net.h:28
+      host_addr : aliased libUSBg.Low_Level.Net_EtHernet_H.Ether_Addr;  -- usbg/function/net.h:29
       ifname    : Interfaces.C.Strings.chars_ptr;  -- usbg/function/net.h:30
       qmult     : aliased int;  -- usbg/function/net.h:31
    end record
@@ -46,9 +46,9 @@ package Libusg.Low_Level.usbg_function_net_h is
    type usbg_f_net_attr_val (discr : unsigned := 0) is record
       case discr is
          when 0 =>
-            dev_addr : aliased Libusg.Low_Level.Net_Ethernet_H.Ether_Addr;  -- usbg/function/net.h:44
+            dev_addr : aliased libUSBg.Low_Level.Net_EtHernet_H.Ether_Addr;  -- usbg/function/net.h:44
          when 1 =>
-            host_addr : aliased Libusg.Low_Level.Net_Ethernet_H.Ether_Addr;  -- usbg/function/net.h:45
+            host_addr : aliased libUSBg.Low_Level.Net_EtHernet_H.Ether_Addr;  -- usbg/function/net.h:45
          when 2 =>
             ifname : Interfaces.C.Strings.chars_ptr;  -- usbg/function/net.h:46
          when others =>
@@ -66,7 +66,7 @@ package Libusg.Low_Level.usbg_function_net_h is
   --  * @return Converted net function or NULL if function hasn't suitable type
   --
 
-   function usbg_to_net_function (f : access Libusg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_net  -- usbg/function/net.h:63
+   function usbg_to_net_function (f : access libUSBg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_net  -- usbg/function/net.h:63
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_to_net_function";
@@ -77,7 +77,7 @@ package Libusg.Low_Level.usbg_function_net_h is
   --  * @return Generic usbg function
   --
 
-   function usbg_from_net_function (nf : access usbg_f_net) return access Libusg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/net.h:70
+   function usbg_from_net_function (nf : access usbg_f_net) return access libUSBg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/net.h:70
      with Import    => True,
       Convention    => C,
       External_Name => "usbg_from_net_function";
@@ -155,7 +155,7 @@ package Libusg.Low_Level.usbg_function_net_h is
   --  * @return 0 on success usbg_error if error occurred.
   --
 
-   function usbg_f_net_get_dev_addr (nf : access usbg_f_net; addr : access Libusg.Low_Level.Net_Ethernet_H.Ether_Addr) return int  -- usbg/function/net.h:127
+   function usbg_f_net_get_dev_addr (nf : access usbg_f_net; addr : access libUSBg.Low_Level.Net_EtHernet_H.Ether_Addr) return int  -- usbg/function/net.h:127
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_f_net_get_dev_addr";
@@ -167,7 +167,7 @@ package Libusg.Low_Level.usbg_function_net_h is
   --  * @return 0 on success usbg_error if error occurred.
   --
 
-   function usbg_f_net_set_dev_addr (nf : access usbg_f_net; addr : access constant Libusg.Low_Level.Net_Ethernet_H.Ether_Addr) return int  -- usbg/function/net.h:140
+   function usbg_f_net_set_dev_addr (nf : access usbg_f_net; addr : access constant libUSBg.Low_Level.Net_EtHernet_H.Ether_Addr) return int  -- usbg/function/net.h:140
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_f_net_set_dev_addr";
@@ -179,7 +179,7 @@ package Libusg.Low_Level.usbg_function_net_h is
   --  * @return 0 on success usbg_error if error occurred.
   --
 
-   function usbg_f_net_get_host_addr (nf : access usbg_f_net; addr : access Libusg.Low_Level.Net_Ethernet_H.Ether_Addr) return int  -- usbg/function/net.h:153
+   function usbg_f_net_get_host_addr (nf : access usbg_f_net; addr : access libUSBg.Low_Level.Net_EtHernet_H.Ether_Addr) return int  -- usbg/function/net.h:153
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_f_net_get_host_addr";
@@ -191,7 +191,7 @@ package Libusg.Low_Level.usbg_function_net_h is
   --  * @return 0 on success usbg_error if error occurred.
   --
 
-   function usbg_f_net_set_host_addr (nf : access usbg_f_net; addr : access constant Libusg.Low_Level.Net_Ethernet_H.Ether_Addr) return int  -- usbg/function/net.h:166
+   function usbg_f_net_set_host_addr (nf : access usbg_f_net; addr : access constant libUSBg.Low_Level.Net_EtHernet_H.Ether_Addr) return int  -- usbg/function/net.h:166
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_f_net_set_host_addr";
@@ -254,4 +254,4 @@ package Libusg.Low_Level.usbg_function_net_h is
       Convention    => C,
       External_Name => "usbg_f_net_set_qmult";
 
-end Libusg.Low_Level.usbg_function_net_h;
+end libUSBg.Low_Level.usbg_function_net_h;

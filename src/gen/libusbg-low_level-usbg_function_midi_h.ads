@@ -4,10 +4,10 @@ pragma Warnings ("U");
 
 with Interfaces.C; use Interfaces.C;
 with Interfaces.C.Strings;
-limited with Libusg.Low_Level.usbg_usbg_h;
+limited with libUSBg.Low_Level.usbg_usbg_h;
 with System;
 
-package Libusg.Low_Level.usbg_function_midi_h is
+package libUSBg.Low_Level.usbg_function_midi_h is
 
    --  arg-macro: procedure USBG_F_MIDI_INT_TO_ATTR_VAL (WHAT)
    --    USBG_TO_UNION(usbg_f_midi_attr_val, index, WHAT)
@@ -74,7 +74,7 @@ package Libusg.Low_Level.usbg_function_midi_h is
   --  * @return Converted midi function or NULL if function hasn't suitable type
   --
 
-   function usbg_to_midi_function (f : access Libusg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_midi  -- usbg/function/midi.h:71
+   function usbg_to_midi_function (f : access libUSBg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_midi  -- usbg/function/midi.h:71
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_to_midi_function";
@@ -85,7 +85,7 @@ package Libusg.Low_Level.usbg_function_midi_h is
   --  * @return Generic usbg function
   --
 
-   function usbg_from_midi_function (mf : access usbg_f_midi) return access Libusg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/midi.h:78
+   function usbg_from_midi_function (mf : access usbg_f_midi) return access libUSBg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/midi.h:78
      with Import    => True,
       Convention    => C,
       External_Name => "usbg_from_midi_function";
@@ -328,4 +328,4 @@ package Libusg.Low_Level.usbg_function_midi_h is
       Convention    => C,
       External_Name => "usbg_f_midi_set_qlen";
 
-end Libusg.Low_Level.usbg_function_midi_h;
+end libUSBg.Low_Level.usbg_function_midi_h;

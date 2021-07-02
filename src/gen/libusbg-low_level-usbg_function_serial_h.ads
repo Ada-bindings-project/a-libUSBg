@@ -3,9 +3,9 @@ pragma Style_Checks (Off);
 pragma Warnings ("U");
 
 with Interfaces.C; use Interfaces.C;
-limited with Libusg.Low_Level.usbg_usbg_h;
+limited with libUSBg.Low_Level.usbg_usbg_h;
 
-package Libusg.Low_Level.usbg_function_serial_h is
+package libUSBg.Low_Level.usbg_function_serial_h is
 
   --  * This library is free software; you can redistribute it and/or
   --  * modify it under the terms of the GNU Lesser General Public
@@ -27,7 +27,7 @@ package Libusg.Low_Level.usbg_function_serial_h is
   --  * @return Converted serial function or NULL if function hasn't suitable type
   --
 
-   function usbg_to_serial_function (f : access Libusg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_serial  -- usbg/function/serial.h:31
+   function usbg_to_serial_function (f : access libUSBg.Low_Level.usbg_usbg_h.usbg_function) return access usbg_f_serial  -- usbg/function/serial.h:31
       with Import   => True,
       Convention    => C,
       External_Name => "usbg_to_serial_function";
@@ -38,7 +38,7 @@ package Libusg.Low_Level.usbg_function_serial_h is
   --  * @return Generic usbg function
   --
 
-   function usbg_from_serial_function (sf : access usbg_f_serial) return access Libusg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/serial.h:38
+   function usbg_from_serial_function (sf : access usbg_f_serial) return access libUSBg.Low_Level.usbg_usbg_h.usbg_function  -- usbg/function/serial.h:38
      with Import    => True,
       Convention    => C,
       External_Name => "usbg_from_serial_function";
@@ -55,4 +55,4 @@ package Libusg.Low_Level.usbg_function_serial_h is
       Convention    => C,
       External_Name => "usbg_f_serial_get_port_num";
 
-end Libusg.Low_Level.usbg_function_serial_h;
+end libUSBg.Low_Level.usbg_function_serial_h;

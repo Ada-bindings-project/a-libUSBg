@@ -21,3 +21,4 @@ clang_ref_cache.db
 *.idx
 .clang-format
 compile_commands.json
+*.orig

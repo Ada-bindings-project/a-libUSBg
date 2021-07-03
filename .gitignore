@@ -22,3 +22,4 @@ clang_ref_cache.db
 .clang-format
 compile_commands.json
 *.orig
+trace

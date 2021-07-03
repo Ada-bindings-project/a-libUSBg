@@ -27,7 +27,7 @@
 -- #define VENDOR		0x1d6b
 -- #define PRODUCT		0x0104
 -- 
-procedure Libusbg.Examples.Gadget_Acm_Ecm is
+procedure libUSBg.Examples.Gadget_Acm_Ecm is
 begin
    null;
 end;

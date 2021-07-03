@@ -21,7 +21,7 @@ package body libUSBg.State is
       pragma Compile_Time_Warning
         (Standard.True, "Get_Configfs_Path unimplemented");
       return
-        raise Program_Error with "Unimplemented function Get_Configfs_Path";
+      raise Program_Error with "Unimplemented function Get_Configfs_Path";
    end Get_Configfs_Path;
 
    -------------------

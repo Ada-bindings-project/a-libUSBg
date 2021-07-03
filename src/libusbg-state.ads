@@ -1,4 +1,4 @@
-private with libUSBg.Low_Level.Usbg_Usbg_H;
+private with libUSBg.Low_Level.usbg_usbg_h;
 private with Ada.Finalization;
 with libUSBg.Gadget;
 with Interfaces;
@@ -21,11 +21,11 @@ package libUSBg.State is
                            IdProduct : Interfaces.Unsigned_16) return libUSBg.Gadget.Ref;
 
    procedure Rm_Gadget (Self      : not null access Ref;
-                       G         : in out libUSBg.Gadget.Ref);
+                        G         : in out libUSBg.Gadget.Ref);
 
 private
    type Ref is tagged record
-      S : aliased libUSBg.Low_Level.Usbg_Usbg_H.Usbg_State_Access;
+      S : aliased libUSBg.Low_Level.usbg_usbg_h.usbg_state_access;
    end record;
 
    type Package_Controler is new Ada.Finalization.Limited_Controlled with null record;
